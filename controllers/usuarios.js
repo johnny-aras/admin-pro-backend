@@ -27,7 +27,7 @@ const getUsuarios = async(req,res)=>{
   ]);
                          
 
-  res.status(400).json({
+  res.status(200).json({
     ok:true,
     usuarios,
     total
@@ -65,7 +65,7 @@ const crearUsuario = async(req,res=response)=>{
 
   
 
-  res.status(400).json({
+  res.status(200).json({
     ok:true,
     usuario,
     token
@@ -98,7 +98,8 @@ const actualizarUsuario = async(req,res=response) =>
     }
 
     //Actualizaciones
-    const campos = req.body;
+    //const campos = req.body;
+    const {password,google,email,...campos}=req.body;
     if(usuarioDB.email===req.body.email)
     {
       delete campos.email;
@@ -111,7 +112,20 @@ const actualizarUsuario = async(req,res=response) =>
           msg:'Ya existe un usuario con ese email'
         });
       }
+
     }  
+
+
+    if(!usuarioDB.google)
+    {
+      campos.email=email;
+    }else if(usuarioDB!==email)
+    {
+      return res.status(400).json({
+        ok:'false',
+        msg:'Usuarios de google no pueden modificar sus correos electronicos'
+      });    
+    }
     delete campos.password;
     delete campos.google;
 
