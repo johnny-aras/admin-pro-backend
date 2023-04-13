@@ -119,7 +119,7 @@ const actualizarUsuario = async(req,res=response) =>
     if(!usuarioDB.google)
     {
       campos.email=email;
-    }else if(usuarioDB!==email)
+    }else if(usuarioDB.email!==email)
     {
       return res.status(400).json({
         ok:'false',
