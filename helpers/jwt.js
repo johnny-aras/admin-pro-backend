@@ -29,6 +29,7 @@ const generarJWT = (uid)=>{
 const validar_ADMIN_ROLE= async(req,res=response,next)=>{
 
   const uid=req.uid;
+  //console.log(`Este es el usuario: ${uid}`);
   
   try {
     
@@ -62,7 +63,8 @@ const validar_ADMIN_ROLE= async(req,res=response,next)=>{
 
 const validar_ADMIN_ROLE_O_MISMO_USUARIO= async(req,res=response,next)=>{
 
-  const uid=req.uid;
+  const uid=req.uid;    
+  //console.log(`este es otro id: ${uid}`);
   const id = req.params.id;
   
   try {

@@ -20,6 +20,7 @@ const validarJWT =  (req,res=response,next)=>{
   try {
 
     const {uid}= jsonWebToken.verify(token, process.env.JWT_SECRET);
+    //console.log(`a ver::::: ${uid}`);
     req.uid=uid;
     next();
     console.log(uid);

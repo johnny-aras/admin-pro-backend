@@ -13,12 +13,12 @@ const { validar_ADMIN_ROLE, validar_ADMIN_ROLE_O_MISMO_USUARIO } = require('../h
 const router = Router(); 
 
 router.get('/',
-//validarJWT,
+validarJWT,
 validar_ADMIN_ROLE,
 getUsuarios);
 
 router.post('/',[
-//    validarJWT,
+    validarJWT,
     check('nombre','El nombre es obligatorio').not().isEmpty(),
     check('password','El password es obligatorio').not().isEmpty(),
     check('email','El email es obligatorio').isEmail(),
